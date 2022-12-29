@@ -1,26 +1,26 @@
 ```mermaid
 classDiagram
     %% Beatmap is also called beatmap for legibility
-    BeatmapsFinder <|-- ByUser
-    BeatmapsFinder <|-- ByFilter
-    BeatmapsFinderFactory <-- Expert : input
-    ByFilter <-- BeatmapsFinderFactory : input
-    ByUser <-- BeatmapsFinderFactory : input
+    BeatmapFinder <|-- ByUser
+    BeatmapFinder <|-- ByFilter
+    BeatmapFinderFactory <-- Expert : input
+    ByFilter <-- BeatmapFinderFactory : input
+    ByUser <-- BeatmapFinderFactory : input
     Expert <-- Screen : input
     Expert <-- Persistence : db_list
     Downloader <-- Expert : beatmap_list
-    Expert <-- BeatmapsFinder : beatmap_list
+    Expert <-- BeatmapFinder : beatmap_list
     Persistence <-- Screen : data_path
 
-    class BeatmapsFinder{
+    class BeatmapFinder{
         +beatmap_list : List~int~
-        find_beatmaps()* List~int~
+        find_beatmap()* List~int~
     }
     class ByUser{
-        -find_beatmaps(input)
+        -find_beatmap(input)
     }
     class ByFilter{
-        -find_beatmaps(input)
+        -find_beatmap(input)
     }
     class Screen{
         <<Interface>>
@@ -36,11 +36,11 @@ classDiagram
     }
     class Expert{
         <<Abstract>>
-        +beatmaps_list : List~int~
+        +beatmap_list : List~int~
         +input : Any
-        -compare_beatmaps(List~int~)
+        -compare_beatmap(List~int~)
     }
-    class BeatmapsFinderFactory{
+    class BeatmapFinderFactory{
         +input : Any
     }
 
