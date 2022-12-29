@@ -3,5 +3,5 @@ class Persistence:
         self.data_path = data_path
 
     def update(self):
-        self.localdata = "update local data logic here"
-        return self.localdata
+        self.beatmap_local = "update local data logic here"
+        return self.beatmap_local
